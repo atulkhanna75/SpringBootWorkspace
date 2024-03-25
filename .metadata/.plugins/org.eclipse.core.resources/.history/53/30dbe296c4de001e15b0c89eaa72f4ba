@@ -1,0 +1,64 @@
+import com.entity.Product;
+import com.service.ProductService;
+
+@RestController
+public class ProductController {
+
+	@Autowired
+	ProductService productService;
+	
+	// http://localhost:9090/findAllAccount 
+	
+	@RequestMapping(value = "findAllProduct",method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Product> findAllProductDetails() {
+		return productService.findAllProduct();
+	}
+	
+	@RequestMapping(value = "findProductInfo/{prodid}",method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public Product findProductInfo(@PathVariable("prodid") int prodid) {
+		return productService.findProductInfo(prodid);
+	}
+	
+	
+	// http://localhost:9090/createAccount
+	// method post 
+	// {"accno":3,"name":"Lex","amount":18000}	key name must be map to entity class variable name 
+			@RequestMapping(value = "createAccount",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	
+	public String createAccount(@RequestBody Account account) {	// @RequestBody annotation is use
+		// extract json data from reqeust body part 
+			System.out.println(account.getAccno()+" "+account.getAmount()+" "+account.getName());
+			return accountService.accountCreate(account);
+	}
+	
+	// http://localhost:9090/deleteAccount/1
+	// http://localhost:9090/deleteAccount/100		
+	// method delete 
+			
+	@RequestMapping(value = "deleteAccount/{accno}",method = RequestMethod.DELETE)
+	public String deleteAccount(@PathVariable("accno") int accno) {
+		return accountService.deleteAccount(accno);
+	}		
+	
+	// http://localhost:9090/withdraw
+	// method patch 
+	// data as json {"accno":2,"amount":100}
+	// data as json {"accno":10,"amount":100}
+	
+	@RequestMapping(value = "withdraw",method = RequestMethod.PATCH,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String withdrawn(@RequestBody Account account) {
+		return accountService.withdrawn(account.getAccno(), account.getAmount());
+	}
+	
+	// http://localhost:9090/deposite/2/100
+	// http://localhost:9090/deposite/10/100
+	// method put 
+	@RequestMapping(value = "deposite/{accno}/{amount}",method = RequestMethod.PUT)
+	public String deposite(@PathVariable("accno") int accno, @PathVariable("amount") float amount) {
+		return accountService.deposit(accno,amount);
+	}
+}

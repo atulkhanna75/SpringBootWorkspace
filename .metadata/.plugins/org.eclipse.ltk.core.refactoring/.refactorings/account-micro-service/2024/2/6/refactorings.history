@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;AccountMicroServiceApplication.java&apos; to &apos;com&apos;" description="Move &apos;AccountMicroServiceApplication.java&apos; to &apos;com&apos;" destination="src/main/java/com" element1="src/main/java/com/example/accountmicroservice/AccountMicroServiceApplication.java" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1707065788235" updateReferences="true"/>
+</session>

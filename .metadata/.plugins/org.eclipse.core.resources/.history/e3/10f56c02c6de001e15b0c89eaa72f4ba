@@ -1,0 +1,13 @@
+package com.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Product {
+@Id
+private int prodid;
+private String Product_name;
+private String Product_desc;
+private String ProductImageUrl;
+private float price;
